@@ -125,16 +125,16 @@ function updateRating(movieIndex, rating) {
         @submit.prevent="addMovie()">
         <div class="flex flex-col">
           <label class="text-white">Name:</label>
-          <input type="text" placeholder="Enter your name" class="bg-gray-700 text-white" v-model.trim="name">
+          <input type="text" required placeholder="Enter your name" class="bg-gray-700 text-white" v-model.trim="name">
         </div>
         <div class="flex flex-col">
           <label class="text-white">Description:</label>
-          <textarea type="text" placeholder="Enter description" rows="4" class="bg-gray-700 text-white"
+          <textarea type="text" required placeholder="Enter description" rows="4" class="bg-gray-700 text-white"
             v-model.trim="description"></textarea>
         </div>
         <div class="flex flex-col">
           <label class="text-white">Image:</label>
-          <input type="text" placeholder="Enter your image url" class="bg-gray-700 text-white" v-model.trim="image">
+          <input type="text" required placeholder="Enter your image url" class="bg-gray-700 text-white" v-model.trim="image">
         </div>
         <div class="flex flex-col">
           <label class="text-white">Genre:</label>
