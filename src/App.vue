@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { StarIcon } from "@heroicons/vue/24/solid";
 import { items } from "./movies.json";
+import FormButton from "./components/FormButton.vue";
 const movies = ref(items);
 
 function updateRating(movieIndex, rating) {
@@ -10,26 +11,16 @@ function updateRating(movieIndex, rating) {
 </script>
 
 <template>
-  <div class="app">
+  <div class="app flex flex-col ">
+    <FormButton />
     <div class="movie-list">
-      <div
-        class="movie-item"
-        v-for="(movie, movieIndex) in movies"
-        :key="movie.id"
-      >
+      <div class="movie-item" v-for="(movie, movieIndex) in movies" :key="movie.id">
         <div class="movie-item-image-wrapper">
           <div class="movie-item-star-wrapper">
-            <StarIcon
-              id="rating"
-              class="movie-item-star-rating-icon"
-              :class="[movie.rating ? 'text-yellow-500' : 'text-gray-500']"
-            />
+            <StarIcon id="rating" class="movie-item-star-rating-icon"
+              :class="[movie.rating ? 'text-yellow-500' : 'text-gray-500']" />
             <div class="movie-item-star-content-wrapper">
-              <span
-                v-if="movie.rating"
-                id="rating-stars"
-                class="movie-item-star-content-rating-rated"
-              >
+              <span v-if="movie.rating" id="rating-stars" class="movie-item-star-content-rating-rated">
                 {{ movie.rating }}
               </span>
               <span v-else class="movie-item-star-content-rating-not-rated">
@@ -44,12 +35,8 @@ function updateRating(movieIndex, rating) {
           <div class="movie-item-title-wrapper">
             <h3 class="movie-item-title">{{ movie.name }}</h3>
             <div class="movie-item-genres-wrapper">
-              <span
-                v-for="genre in movie.genres"
-                :key="`${movie.id}-${genre}`"
-                class="movie-item-genre-tag"
-                >{{ genre }}</span
-              >
+              <span v-for="genre in movie.genres" :key="`${movie.id}-${genre}`" class="movie-item-genre-tag">{{ genre
+              }}</span>
             </div>
           </div>
           <div class="movie-item-description-wrapper">
@@ -61,22 +48,16 @@ function updateRating(movieIndex, rating) {
             </span>
 
             <div class="movie-item-star-icon-wrapper">
-              <button
-                v-for="star in 5"
-                :key="star"
-                class="movie-item-star-icon-button"
-                :class="[
-                  star <= movie.rating ? 'text-yellow-500' : 'text-gray-500',
-                ]"
-                :disabled="star === movie.rating"
-                @click="updateRating(movieIndex, star)"
-              >
+              <button v-for="star in 5" :key="star" class="movie-item-star-icon-button" :class="[
+                star <= movie.rating ? 'text-yellow-500' : 'text-gray-500',
+              ]" :disabled="star === movie.rating" @click="updateRating(movieIndex, star)">
                 <StarIcon class="movie-item-star-icon" />
               </button>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </template>
